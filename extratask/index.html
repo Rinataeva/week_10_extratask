@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Ceramic Gallery</title>
-</head>
-<body>
-   <h1>Ceramic Gallery</h1>
-   <div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ceramic Gallery</title>
+    <style>
+      .imgForSale {
+        width: 400px;
+        height: 430px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ceramic Gallery</h1>
+    <div>
       <div class="imgDiv">
-         <img src="./images/cup.jpg" alt="an image of a cup">
-         <img src="./images/lantern.jpg" alt="an image of a lantern">
+        <img
+          class="imgForSale"
+          src="./images/cup.jpg"
+          alt="an image of a cup"
+        />
+        <img
+          class="imgForSale"
+          src="./images/lantern.jpg"
+          alt="an image of a lantern"
+        />
       </div>
       <div class="btnDiv">
-         <button id="btn">Press to know the price</button>
+        <button id="btn">Press to know the price</button>
       </div>
-   </div>
-   
-</body>
+    </div>
+    <script>
+      //Получаю кнопку
+      const btnClick = document.getElementById("btn");
+      //Создаю стрелочную функцию и указываю параметры и действие
+      const calculateTotalPrice = (quantity, price) => quantity * price;
+      //Слушаю два события (кнопку и функцию)
+      btnClick.addEventListener("click", () => {
+        alert(
+          `Стоимость выбранных изделий: ${calculateTotalPrice(2, 2500)} рублей`
+        );
+      });
+    </script>
+  </body>
 </html>
