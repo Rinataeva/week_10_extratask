@@ -6,7 +6,7 @@
     <title>Ceramic Gallery</title>
     <style>
       html {
-        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif,
           sans-serif;
       }
       h1 {
@@ -15,10 +15,17 @@
         font-weight: 700;
       }
       .imgDiv {
+        margin: 0 auto;
         display: flex;
-        justify-content: center;
-        background-color: brown;
-        margin: 70px 100px;
+        justify-content: space-around;
+        padding-left: 20px;
+        /* background-color: brown; */
+        /* margin: 70px 100px; */
+      }
+
+      .cupDiv {
+        display: flex;
+        flex-direction: column;
       }
       .imgForSale {
         width: 400px;
@@ -26,7 +33,9 @@
       }
       .btnDiv {
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
       }
       .txtDiv {
         margin: 0 auto;
@@ -34,53 +43,82 @@
         justify-content: space-around;
         align-items: center;
         width: 800px;
-        color: rgba(37, 4, 10, 0.678);
       }
-      #btn {
+      #priceBtn {
         width: 500px;
         height: 50px;
-        background-color: brown;
+        background-color: rgb(75, 76, 128);
         border-radius: 15px;
         font-size: 16px;
-        color: yellow;
+        color: white;
         font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
           sans-serif;
+      }
+      #message {
+        color: rgb(1, 1, 17);
+        font-size: large;
       }
     </style>
   </head>
   <body>
-    <h1>Ceramic Gallery</h1>
+    <h1>Галерея Керамики</h1>
     <div>
       <div class="imgDiv">
-        <img
-          class="imgForSale"
-          src="./images/cup.jpg"
-          alt="an image of a cup"
-        />
-        <img
-          class="imgForSale"
-          src="./images/lantern.jpg"
-          alt="an image of a lantern"
-        />
+        <div class="cupDiv">
+          <img
+            id="image1"
+            class="imgForSale"
+            src="./images/cup.jpg"
+            alt="an image of a cup"
+          />
+          <span id="text1"></span>
+        </div>
+        <div class="cupDiv">
+          <img
+            id="image2"
+            class="imgForSale"
+            src="./images/lantern.jpg"
+            alt="an image of a lantern"
+          />
+          <span id="text2"></span>
+        </div>
       </div>
       <div class="txtDiv">
-        <h2>cup</h2>
-        <h2>lantern</h2>
+        <h3>Кликни на изображение, чтобы узнать стоимость</h3>
       </div>
       <div class="btnDiv">
-        <button id="btn">Press to know the price</button>
+        <button id="priceBtn">Купить со скидкой 25%</button>
+        <span id="message"></span>
       </div>
     </div>
     <script>
-      //Получаю кнопку
-      const btnClick = document.getElementById("btn");
-      //Создаю стрелочную функцию и указываю параметры и действие
+      //Получаю все элементы
+      const priceBtn = document.getElementById("priceBtn");
+      const message = document.getElementById("message");
+      const text1 = document.getElementById("text1");
+      const text2 = document.getElementById("text2");
+      const image1 = document.getElementById("image1");
+      const image2 = document.getElementById("image2");
+
+      // По клику вывожу текст первой картинки
+      image1.addEventListener("click", () => {
+        text1.textContent = "Стоимость чашки 1500 рублей";
+      });
+      // По клику вывожу текст второй картинки
+      image2.addEventListener("click", () => {
+        text2.textContent = "Стоимость подсвечника 1500 рублей";
+      });
+
+      //Создаю стрелочную функцию для расчета стоимости и указываю параметры и действие
       const calculateTotalPrice = (quantity, price) => quantity * price;
-      //Слушаю два события (кнопку и функцию)
-      btnClick.addEventListener("click", () => {
-        alert(
-          `Стоимость выбранных изделий: ${calculateTotalPrice(2, 2500)} рублей`
-        );
+
+      //На кнопку вешаю Слушатель события
+      priceBtn.addEventListener("click", () => {
+        // Вывожу отдельной строкой сумму товаров
+        message.textContent = `Стоимость изделий: ${
+          calculateTotalPrice(2, 1500) * 0.8
+        } рублей`;
+        // );
       });
     </script>
   </body>
